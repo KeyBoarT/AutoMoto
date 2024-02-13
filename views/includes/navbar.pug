@@ -1,0 +1,25 @@
+header.header
+  .container
+    a.nav-brand(href='#')
+      //img(src='/img/logo.png' alt='logo-mini')
+      <span class="headline-md logo-text">Automoto</span>
+    nav.navbar
+      ul.nav-links
+        li.navbar-link.label-lg(class='link:hover')
+          a(href='home') Home
+        li.navbar-link.label-lg(class='link:hover')
+          a(href='explore') Explore
+        li.navbar-link.label-lg(class='link:hover')
+          a(href='cart') Cart
+        li.navbar-link.label-lg(class='link:hover')
+          a(href='about-us') About Us
+        li.navbar-link.label-lg(class='link:hover')
+          a(href='login') Login
+    .header-actions
+      button.btn-icon.primary(aria-label='cart')
+        i.fa-solid.fa-cart-shopping
+      button.btn-icon.profile-btn(aria-label='Automoto account: Mehmet Sezer')
+        img.img-cover(src='/img/chery.png' width='50' height='50' alt='Mehmet sezer')
+      button.nav-toggle-btn.active(aria-label='menu toggle' data-nav-toggler='')
+        i.fa-solid.fa-bars.default-icon
+        i.fa-solid.fa-xmark.active-icon

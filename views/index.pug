@@ -1,0 +1,272 @@
+extends layouts/main-layout.pug
+include mixins/createSliderCard.pug
+include mixins/createQnaCard.pug
+
+mixin createSliderCard(model)
+  li.slider-item
+    div.model-card.card
+      figure.card-banner.img-holder(style='--width: 500; --height: 500;')
+        img.img-cover(src=`/img/${model.image}` width='500' height='500' loading='lazy' alt='Digital Collection')
+      div.card-content
+        div.card-profile
+          img(src=`/img/${model.brandimg}` width='64' height='64' loading='lazy' alt=`${model.name}`)
+          i.fa-solid.fa-fire
+        h3.title-md.card-title #{model.name}
+        p.label-md.card-brand #{model.brand}
+        p.card-text #{model.type}
+
+block content 
+  article
+    section.section.hero
+      h1.headline-lg.hero-title
+        | Hayallerinizdeki Araba 
+        span.logo-text AutoMoto
+        | &apos;da !
+      p.section-text.body-lg
+        | sizi yolculu&gbreve;unuza ad&imath;m atman&imath;z i&ccedil;in bekliyor. Kaliteli ve &ccedil;e&scedil;itli ara&ccedil; se&ccedil;enekleriyle, her t&uuml;rl&uuml; ihtiyaca uygun &ccedil;&ouml;z&uuml;mler sunuyoruz.
+      button.btn Ke&scedil;fetmeye Ba&scedil;la
+    section.section.new-models
+      .container
+        .title-wrapper
+          h2.headline-md.section-title.text-center Yeni Modeller
+          a.btn-link(class='link:hover')
+            span.span Daha Fazla
+            i.fa-solid.fa-arrow-right-long
+        .slider
+          ul.slider-container
+            if models.length > 0
+              each model in models
+                +createSliderCard(model)
+            else
+              h1 No Products
+                // pug template has been fill here for dynamic data
+          button.slider-btn.prev(aria-label='Slide to previous item')
+            i.fa-solid.fa-chevron-left
+          button.slider-btn.next(aria-label='Slide to next item')
+            i.fa-solid.fa-chevron-right
+    section.section.explore-models
+      .container
+        div.title-wrapper
+          h2.headline-md.section-title.text-center Modelleri Ke&scedil;fet
+          a.btn-link(class='link:hover')
+            span.span Daha Fazla
+            i.fa-solid.fa-arrow-right-long
+        ul.grid-list
+    section.section.qna
+      div.container
+        h2.headline-md.section-title.text-center SSS
+        p.section-text.body-md.text-center
+          | sizi yolculu&gbreve;unuza ad&imath;m atman&imath;z i&ccedil;in bekliyor. Kaliteli ve &ccedil;e&scedil;itli ara&ccedil; se&ccedil;enekleriyle, her t&uuml;rl&uuml; ihtiyaca uygun &ccedil;&ouml;z&uuml;mler sunuyoruz.
+        ul.qna-list
+          each qna in qnas 
+            +createQnaCard(qna)
+
+    section.section.contact(aria-label='contact')
+      .container
+        h2.headline-md.section-title.text-center Sorunuz mu var ? &Idot;leti&scedil;ime Ge&ccedil;in!
+        p.body-md.section-text.text-center
+          | sizi yolculu&gbreve;unuza ad&imath;m atman&imath;z i&ccedil;in bekliyor. Kaliteli ve &ccedil;e&scedil;itli ara&ccedil; se&ccedil;enekleriyle, her t&uuml;rl&uuml; ihtiyaca uygun &ccedil;&ouml;z&uuml;mler sunuyoruz.
+        a.btn.primary(href='#')
+          ion-icon.md.hydrated(name='call-outline' aria-hidden='true' role='img')
+          span.span &Idot;leti&scedil;ime ge&ccedil;in
+    section.section.newsletter(aria-label='newsletter')
+      .container
+        .newsletter-card
+          div
+            h3.headline-md.text-center Haberciye kay&imath;t olun
+            p.body-md.card-text.text-center
+              | En g&uuml;ncel haberleri almak i&ccedil;in kay&imath;t olun.
+          .input-wrapper
+            input.input-field(type='email' name='email_address' placeholder='Emailinizi giriniz :' required='')
+            button.btn.btn-primary G&ouml;nder
+          i.fa-solid.fa-envelope.bg-icon.bg-icon-1
+          i.fa-solid.fa-file-lines.bg-icon.bg-icon-2
+
+//- doctype html
+//- head
+//-   // Required meta tags
+//-   meta(charset='utf-8')
+//-   meta(name='viewport' content='width=device-width, initial-scale=1')
+//-   // title
+//-   title Hello, world!
+//-   // google fonts
+//-   link(rel='preconnect' href='https://fonts.googleapis.com')
+//-   link(rel='preconnect' href='https://fonts.gstatic.com' crossorigin='')
+//-   link(href='https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@700&family=Inter:wght@400;500;600;700&display=swap' rel='stylesheet')
+//-   // custom css
+//-   link(rel='stylesheet' href='/css/style.css')
+//- // header
+//- header.header
+//-   .container
+//-     a.nav-brand(href='#')
+//-       img(src='/img/logo.png' alt='logo-mini')
+//-       // <span class="headline-md logo-text">Automoto</span>
+//-     nav.navbar
+//-       ul.nav-links
+//-         li.navbar-link.label-lg(class='link:hover')
+//-           a(href='home') Home
+//-         li.navbar-link.label-lg(class='link:hover')
+//-           a(href='explore') Explore
+//-         li.navbar-link.label-lg(class='link:hover')
+//-           a(href='cart') Cart
+//-         li.navbar-link.label-lg(class='link:hover')
+//-           a(href='about-us') About Us
+//-         li.navbar-link.label-lg(class='link:hover')
+//-           a(href='login') Login
+//-     .header-actions
+//-       button.btn-icon.primary(aria-label='cart')
+//-         i.fa-solid.fa-cart-shopping
+//-       button.btn-icon.profile-btn(aria-label='Automoto account: Mehmet Sezer')
+//-         img.img-cover(src='/img/chery.png' width='50' height='50' alt='Mehmet sezer')
+//-       button.nav-toggle-btn.active(aria-label='menu toggle' data-nav-toggler='')
+//-         i.fa-solid.fa-bars.default-icon
+//-         i.fa-solid.fa-xmark.active-icon
+//- main
+//-   article
+//-     section.section.hero
+//-       h1.headline-lg.hero-title
+//-         | Hayallerinizdeki Araba 
+//-         span.logo-text AutoMoto
+//-         | &apos;da !
+//-       p.section-text.body-lg
+//-         | sizi yolculu&gbreve;unuza ad&imath;m atman&imath;z i&ccedil;in bekliyor. Kaliteli ve &ccedil;e&scedil;itli ara&ccedil; se&ccedil;enekleriyle, her t&uuml;rl&uuml; ihtiyaca uygun &ccedil;&ouml;z&uuml;mler sunuyoruz.
+//-       button.btn Ke&scedil;fetmeye Ba&scedil;la
+//-     section.section.new-models
+//-       .container
+//-         .title-wrapper
+//-           h2.headline-md.section-title.text-center Yeni Modeller
+//-           a.btn-link(href='#')
+//-             | Daha Fazla 
+//-             i.fa-solid.fa-arrow-right
+//-         .slider
+//-           ul.slider-container
+//-             // pug template has been fill here for dynamic data
+//-     section.section.explore-models
+//-       .container
+//-         h2.headline-md.section-title.text-center Modelleri Ke&scedil;fet
+//-         ul.grid-list
+//-         a.btn-link(href='#' class='link:hover')
+//-           span.span Daha Fazla
+//-           ion-icon.md.hydrated(name='arrow-forward' aria-hidden='true' role='img')
+//-     section.section.qna
+//-       h2.headline-md.section-title.text-center SSS
+//-       p.section-text.body-md.text-center
+//-         | sizi yolculu&gbreve;unuza ad&imath;m atman&imath;z i&ccedil;in bekliyor. Kaliteli ve &ccedil;e&scedil;itli ara&ccedil; se&ccedil;enekleriyle, her t&uuml;rl&uuml; ihtiyaca uygun &ccedil;&ouml;z&uuml;mler sunuyoruz.
+//-       ul.qna-list
+//-         li.qna-item
+//-           .qna-card
+//-             button.qna-btn
+//-               h3.title-sm Ara&ccedil; sat&imath;n alma s&uuml;reci nas&imath;l i&scedil;liyor?
+//-               i.fa-solid.fa-caret-down
+//-             .qna-content
+//-               p.body-md
+//-                 | Ara&ccedil; sat&imath;n alma s&uuml;recimiz olduk&ccedil;a basit ve kullan&imath;c&imath; dostudur. &Idot;lk olarak, m&uuml;&scedil;terilerimiz ara&ccedil;lar&imath;m&imath;z aras&imath;ndan se&ccedil;im yapabilir ve detayl&imath; bilgi alabilirler. Daha sonra, sat&imath;n alma s&uuml;reciyle ilgili detaylar&imath; g&ouml;r&uuml;&scedil;mek i&ccedil;in ekibimizle ileti&scedil;ime ge&ccedil;ebilirler. Finansman se&ccedil;enekleri ve gereken belgeler konusunda da m&uuml;&scedil;terilerimize rehberlik ediyoruz.
+//-         li.qna-item
+//-           .qna-card
+//-             button.qna-btn
+//-               h3.title-sm Galerinizde hangi t&uuml;r ara&ccedil;lar bulunuyor?
+//-               i.fa-solid.fa-caret-down
+//-             .qna-content
+//-               p.body-md
+//-                 | Galerimizde hatchback, sedan, SUV, crossover, spor ara&ccedil;lar ve daha bir&ccedil;ok farkl&imath; t&uuml;rde ara&ccedil; bulunmaktad&imath;r. M&uuml;&scedil;terilerimizin farkl&imath; ihtiya&ccedil;lar&imath;n&imath; kar&scedil;&imath;lamak i&ccedil;in geni&scedil; bir ara&ccedil; yelpazesine sahibiz.
+//-         li.qna-item
+//-           .qna-card
+//-             button.qna-btn
+//-               h3.title-sm  Ara&ccedil;lar&imath;n&imath;z&imath;n durumu ve ge&ccedil;mi&scedil;i hakk&imath;nda nas&imath;l bilgi alabilirim?
+//-               i.fa-solid.fa-caret-down
+//-             .qna-content
+//-               p.body-md
+//-                 | Her bir ara&ccedil; hakk&imath;nda detayl&imath; bilgi sunuyoruz. Ara&ccedil;lar&imath;n kilometreleri, model y&imath;l&imath;, teknik &ouml;zellikleri, ge&ccedil;mi&scedil;i ve durumu gibi &ouml;nemli bilgileri galerimizde bulabilirsiniz. Ayr&imath;ca isterseniz detayl&imath; bir ara&ccedil; raporu da sunabiliriz.
+//-     section.section.contact(aria-label='contact')
+//-       .container
+//-         h2.headline-md.section-title.text-center Sorunuz mu var ? &Idot;leti&scedil;ime Ge&ccedil;in!
+//-         p.body-md.section-text.text-center
+//-           | sizi yolculu&gbreve;unuza ad&imath;m atman&imath;z i&ccedil;in bekliyor. Kaliteli ve &ccedil;e&scedil;itli ara&ccedil; se&ccedil;enekleriyle, her t&uuml;rl&uuml; ihtiyaca uygun &ccedil;&ouml;z&uuml;mler sunuyoruz.
+//-         a.btn.primary(href='#')
+//-           ion-icon.md.hydrated(name='call-outline' aria-hidden='true' role='img')
+//-           span.span &Idot;leti&scedil;ime ge&ccedil;in
+//-     section.section.newsletter(aria-label='newsletter')
+//-       .container
+//-         .newsletter-card
+//-           div
+//-             h3.headline-md.text-center Haberciye kay&imath;t olun
+//-             p.body-md.card-text.text-center
+//-               | En g&uuml;ncel haberleri almak i&ccedil;in kay&imath;t olun.
+//-           .input-wrapper
+//-             input.input-field(type='email' name='email_address' placeholder='Emailinizi giriniz :' required='')
+//-             button.btn.btn-primary G&ouml;nder
+//-           i.fa-solid.fa-envelope.bg-icon.bg-icon-1
+//-           i.fa-solid.fa-file-lines.bg-icon.bg-icon-2
+//-     footer.footer
+//-       .section.footer-top
+//-         .container
+//-           .footer-brand
+//-             a(href='#')
+//-               span.logo-text.headline-md AutoMoto
+//-             p.body-md.footer-text
+//-               | S&imath;f&imath;r ve ikinci el arabalar&imath; en g&uuml;venilir yerden al&imath;n.
+//-           ul.footer-list
+//-             li
+//-               p.title-lg.footer-list-title AutoMoto
+//-             li
+//-               a.footer-link(href='#')
+//-                 ion-icon.md.hydrated(name='chevron-forward' role='img' aria-label='chevron forward')
+//-                 span.span Ke&scedil;fet
+//-             li
+//-               a.footer-link(href='#')
+//-                 ion-icon.md.hydrated(name='chevron-forward' role='img' aria-label='chevron forward')
+//-                 span.span Aktiviteler
+//-             li
+//-               a.footer-link(href='#')
+//-                 ion-icon.md.hydrated(name='chevron-forward' role='img' aria-label='chevron forward')
+//-                 span.span Sepet
+//-             li
+//-               a.footer-link(href='#')
+//-                 ion-icon.md.hydrated(name='chevron-forward' role='img' aria-label='chevron forward')
+//-                 span.span &Idot;&scedil; Ortaklar&imath;m&imath;z
+//-           ul.footer-list
+//-             li
+//-               p.title-lg.footer-list-title Kullan&imath;&scedil;l&imath; Linkler
+//-             li
+//-               a.footer-link(href='#')
+//-                 ion-icon.md.hydrated(name='chevron-forward' role='img' aria-label='chevron forward')
+//-                 span.span Hakk&imath;m&imath;zda
+//-             li
+//-               a.footer-link(href='#')
+//-                 ion-icon.md.hydrated(name='chevron-forward' role='img' aria-label='chevron forward')
+//-                 span.span Blog &amp; Haberler
+//-             li
+//-               a.footer-link(href='#')
+//-                 ion-icon.md.hydrated(name='chevron-forward' role='img' aria-label='chevron forward')
+//-                 span.span &Scedil;artlar &amp; Ko&scedil;ullar
+//-             li
+//-               a.footer-link(href='#')
+//-                 ion-icon.md.hydrated(name='chevron-forward' role='img' aria-label='chevron forward')
+//-                 span.span Gizlilik Politikas&imath;
+//-             li
+//-               a.footer-link(href='#')
+//-                 ion-icon.md.hydrated(name='chevron-forward' role='img' aria-label='chevron forward')
+//-                 span.span Giri&scedil; Yap
+//-             li
+//-               a.footer-link(href='#')
+//-                 ion-icon.md.hydrated(name='chevron-forward' role='img' aria-label='chevron forward')
+//-                 span.span &Idot;leti&scedil;ime Ge&ccedil;in
+//-           .footer-list
+//-             ul
+//-               li
+//-                 p.title-lg.footer-list-title &Idot;leti&scedil;im Detaylar&imath;
+//-               li.footer-list-item
+//-                 ion-icon.md.hydrated(name='mail-outline' aria-hidden='true' role='img')
+//-                 a.footer-link(href='mailto:metalink@nft.com') automoto.link@car.com
+//-               li.footer-list-item
+//-                 ion-icon.md.hydrated(name='call-outline' aria-hidden='true' role='img')
+//-                 a.footer-link(href='tel:+90 552 240 37 05') +90 552 240 37 05
+//-       .footer-bottom
+//-         .container
+//-           p.body-md.text-center.copyright
+//-             | &copy; 2024 Automoto. Developed with 
+//-             span.span &#x2764;
+//-             |  by dynamicsoft.
+//- .body-bg-shape
+//- // Font Awesome Link
+//- script(src='https://kit.fontawesome.com/4561d60ff4.js' crossorigin='anonymous')

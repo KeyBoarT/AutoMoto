@@ -1,0 +1,12 @@
+mixin createSliderCard(model)
+  li.slider-item
+    div.model-card.card
+      figure.card-banner.img-holder(style='--width: 500; --height: 500;')
+        img.img-cover(src=`/img/${model.image}` width='500' height='500' loading='lazy' alt='Digital Collection')
+      div.card-content
+        div.card-profile
+          img(src=`/img/${model.brandimg}` width='64' height='64' loading='lazy' alt=`${model.name}`)
+          i.fa-solid.fa-fire
+        h3.title-md.card-title #{model.name}
+        p.label-md.card-brand #{model.brand}
+        p.card-text #{model.type}

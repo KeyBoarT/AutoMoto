@@ -1,0 +1,9 @@
+mixin createQnaCard(qna)
+    li.qna-item
+     .qna-card
+       button.qna-btn
+         h3.title-sm #{qna.question}
+         i.fa-solid.fa-caret-down
+       .qna-content
+         p.body-md
+           #{qna.answer}
